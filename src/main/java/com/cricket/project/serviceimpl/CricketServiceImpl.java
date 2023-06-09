@@ -17,6 +17,8 @@ import com.cricket.project.mail.MailSenderService;
 import com.cricket.project.repositories.CricketerRepository;
 import com.cricket.project.service.CricketService;
 import com.cricket.project.service.TeamsService;
+
+import jakarta.mail.MessagingException;
 @Component
 public class CricketServiceImpl implements CricketService {
 	
@@ -168,14 +170,14 @@ MailSenderService service;
 	}
 
 	@Override
-	public void addPlayerToTeam(int tid, int pid) throws TeamNotFound {
+	public void addPlayerToTeam(int tid, int pid) throws TeamNotFound,MessagingException {
 		// TODO Auto-generated method stub
 		Cricketer player=repo.getById(pid);
 		Teams team=ts.find(tid);
 		player.setTeams(team);
-//		
-//		String to=player.getMailId();
-//		service.sendsimpleEmail(to, player.getName()+"your sold to "+player.getTeams().getTeamName(), "Bid Successfull");
+		
+		String to=player.getMailId();
+		service.sendsimpleEmail(to, player.getName()+"your sold to "+player.getTeams().getTeamName(), "Bid Successfull");
 		repo.save(player);
 		
 		

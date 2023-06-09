@@ -12,6 +12,8 @@ import com.cricket.project.Exception.PlayerNotFound;
 import com.cricket.project.Exception.TeamNotFound;
 import com.cricket.project.entity.Cricketer;
 import com.cricket.project.entity.Teams;
+
+import jakarta.mail.MessagingException;
 @Service
 public interface CricketService {
 	
@@ -25,6 +27,6 @@ public interface CricketService {
     Cricketer getPlayer(int id);
     List<Cricketer> getUnAssignedPlayers();
     void addPlayer(Cricketer player) throws PlayerAlreadyExsists;
-    void addPlayerToTeam(int tid,int pid) throws TeamNotFound;
+    void addPlayerToTeam(int tid,int pid) throws TeamNotFound, MessagingException;
   void deletePlayer(int id);
 }
