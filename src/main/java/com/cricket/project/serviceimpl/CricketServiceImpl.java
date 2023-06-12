@@ -177,8 +177,9 @@ MailSenderService service;
 		player.setTeams(team);
 		
 		String to=player.getMailId();
-		service.sendsimpleEmail(to, player.getName()+"your sold to "+player.getTeams().getTeamName(), "Bid Successfull");
+		
 		repo.save(player);
+		service.sendsimpleEmail(to, player.getName()+"your sold to "+player.getTeams().getTeamName(), "Bid Successfull");
 		
 		
 	}
